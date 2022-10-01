@@ -309,7 +309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 165424, guid: 9f4313a771e05c64d8da7ae6bd19a19f, type: 3}
       propertyPath: m_Name
-      value: UD_demo_character
+      value: Enemy_Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 403496, guid: 9f4313a771e05c64d8da7ae6bd19a19f, type: 3}
       propertyPath: m_RootOrder
@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9542308, guid: 9f4313a771e05c64d8da7ae6bd19a19f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c709587580b70d645b54abba0cf21d16, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4313a771e05c64d8da7ae6bd19a19f, type: 3}
 --- !u!1 &705507993
@@ -602,9 +606,13 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1b13d074e6c28304b9e45b2ffcc12156, type: 2}
+    - target: {fileID: -346142337343115430, guid: cbb71572e795c8c4b963f0d27a73a46d, type: 3}
+      propertyPath: m_Name
+      value: Mage
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cbb71572e795c8c4b963f0d27a73a46d, type: 3}
       propertyPath: m_Name
-      value: Ch39_nonPBR@Idle
+      value: PlayerModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb71572e795c8c4b963f0d27a73a46d, type: 3}
