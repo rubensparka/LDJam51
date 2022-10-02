@@ -7,6 +7,7 @@ public class scr_Bullet : MonoBehaviour
     Vector3 dir;
     public float speed;
     public float playerY;
+    float deathTimer = 5f;
 
     void Start()
     {
@@ -24,5 +25,10 @@ public class scr_Bullet : MonoBehaviour
     {
         //Debug.Log(dir);
         transform.Translate(dir.normalized * Time.deltaTime * speed, Space.World);
+        deathTimer -= Time.deltaTime;
+        if (deathTimer <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
