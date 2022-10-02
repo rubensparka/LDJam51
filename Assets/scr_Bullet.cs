@@ -54,7 +54,8 @@ public class scr_Bullet : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
-            case "Player":
+            case "Wall":
+                Destroy(gameObject);
                 break;
 
             case "Enemy":

@@ -135,7 +135,7 @@ public class scr_Enemy : MonoBehaviour
 
             case "Bullet":
                 
-                TakeDamage(5);
+                TakeDamage(10);
                 break;
 
                 
