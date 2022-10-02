@@ -12,7 +12,9 @@ public class scr_Enemy : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
-    [SerializeField] private float health = 20f; 
+    [SerializeField] private float health = 20f;
+    [SerializeField] ParticleSystem explosionFX;
+    
 
     //Patroling
     public Vector3 walkPoint;
@@ -98,6 +100,7 @@ public class scr_Enemy : MonoBehaviour
         agent.SetDestination(player.position);
         animator.SetBool("isWalking", true);
         animator.SetBool("isAttacking", false);
+        
     }
 
     private void AttackPlayer()
@@ -134,18 +137,19 @@ public class scr_Enemy : MonoBehaviour
                 
 
             case "Bullet":
-                
-                TakeDamage(10);
+                explosionFX.Play();
+                TakeDamage(2);
                 break;
 
                 
-
             default:
                 // do nothing
                 break;
         }
 
     }
+
+        
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -153,6 +157,8 @@ public class scr_Enemy : MonoBehaviour
 
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
+
+
     private void DestroyEnemy()
     {
         Destroy(gameObject);
@@ -161,3 +167,5 @@ public class scr_Enemy : MonoBehaviour
 
 
 }
+
+                
