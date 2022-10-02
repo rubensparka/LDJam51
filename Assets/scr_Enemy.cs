@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class scr_EnemyFollow : MonoBehaviour
+public class scr_Enemy : MonoBehaviour
 {
     Animator animator;
 
@@ -60,7 +60,7 @@ public class scr_EnemyFollow : MonoBehaviour
     {
         if (!walkPointSet) SearchWalkPoint();
         {
-            animator.SetBool("isWalking", false);
+            animator.SetBool("isWalking", true);
         }
 
         if (walkPointSet)
@@ -92,6 +92,8 @@ public class scr_EnemyFollow : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("isWalking", true);
+        animator.SetBool("isAttacking", false);
     }
 
     private void AttackPlayer()
