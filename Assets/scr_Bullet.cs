@@ -7,7 +7,7 @@ public class scr_Bullet : MonoBehaviour
     Vector3 dir;
     public float speed;
     public float playerY;
-    float deathTimer = 5f;
+    float deathTimer = 2f;
 
     void Start()
     {
@@ -16,14 +16,14 @@ public class scr_Bullet : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.point);
-            dir = hit.point;
-            dir.y = playerY;
+            dir = hit.point - transform.position;
+            dir.y = 0;
         }
     }
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(dir);
+        Debug.Log(dir);
         transform.Translate(dir.normalized * Time.deltaTime * speed, Space.World);
         deathTimer -= Time.deltaTime;
         if (deathTimer <= 0f)
