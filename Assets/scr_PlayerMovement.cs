@@ -45,9 +45,9 @@ public class scr_PlayerMovement : MonoBehaviour
         shootTimer -= Time.deltaTime;
         if (Input.GetButton("Fire1") && shootTimer <= 0f)
         {
-            Instantiate(bullet, transform.GetChild(0).position, Quaternion.identity);
-            bullet.GetComponent<scr_Bullet>().speed = BulletSpeed;
-            bullet.GetComponent<scr_Bullet>().playerY = transform.GetChild(0).position.y;
+            GameObject thisBullet = Instantiate(bullet, transform.GetChild(0).position, Quaternion.identity);
+            thisBullet.GetComponent<scr_Bullet>().speed = BulletSpeed;
+            thisBullet.GetComponent<scr_Bullet>().playerY = transform.GetChild(0).position.y;
             shootTimer = ShootCD;
         }
 

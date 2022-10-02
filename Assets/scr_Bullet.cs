@@ -19,6 +19,8 @@ public class scr_Bullet : MonoBehaviour
             dir = hit.point - transform.position;
             dir.y = 0;
         }
+        transform.Rotate(90, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.z, dir.x) + 90);
+        
     }
     // Update is called once per frame
     void Update()
