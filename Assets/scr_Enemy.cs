@@ -6,10 +6,13 @@ using UnityEngine.AI;
 public class scr_Enemy : MonoBehaviour
 {
     Animator animator;
+    scr_Bullet bullet;
 
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+
+    [SerializeField] private float health = 20f; 
 
     //Patroling
     public Vector3 walkPoint;
@@ -37,13 +40,14 @@ public class scr_Enemy : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        bullet = GetComponent<scr_Bullet>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //FollowPlayer();
+        
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -118,13 +122,42 @@ public class scr_Enemy : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }    
-
-    private void FollowPlayer()
-    {
-        agent.SetDestination(player.position);
     }
 
-    
-    
+
+    public void OnTriggerEnter(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Player":
+                break;
+                
+
+            case "Bullet":
+                
+                TakeDamage(5);
+                break;
+
+                
+
+            default:
+                // do nothing
+                break;
+        }
+
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        print(health);
+
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+    }
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+
+
+
 }

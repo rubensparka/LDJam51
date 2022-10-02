@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class scr_Bullet : MonoBehaviour
 {
+    
+
+    [SerializeField] public int bulletDamage = 5;
+
     Vector3 dir;
     public float speed;
     public float playerY;
@@ -11,6 +15,10 @@ public class scr_Bullet : MonoBehaviour
 
     void Start()
     {
+         
+
+        AddNonTriggerBoxCollider();
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -33,4 +41,31 @@ public class scr_Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+    // Creates BoxCollider with isTrigger checked
+    private void AddNonTriggerBoxCollider()
+    {
+        Collider hitBox = gameObject.AddComponent<BoxCollider>();
+        hitBox.isTrigger = true;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Player":
+                break;
+
+            case "Enemy":
+                Destroy(gameObject);
+                break;
+
+            default:
+                // do nothing
+                break;
+        }
+    }
+
+
 }

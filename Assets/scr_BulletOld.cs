@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Bullet_Copy : MonoBehaviour
+public class scr_BulletOld : MonoBehaviour
 {
     Vector3 dir;
     public float speed;
@@ -11,8 +11,6 @@ public class scr_Bullet_Copy : MonoBehaviour
 
     void Start()
     {
-        AddNonTriggerBoxCollider();
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -35,30 +33,4 @@ public class scr_Bullet_Copy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void AddNonTriggerBoxCollider()
-    {
-        Collider hitBox = gameObject.AddComponent<BoxCollider>();
-        hitBox.isTrigger = true;
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        switch (other.gameObject.tag)
-        {
-            case "Player":
-                print("HIT PLAYER MESH");
-                break;
-
-            case "Enemy":
-                Destroy(gameObject);
-                break;
-
-            default:
-                // do nothing
-                break;
-        }
-    }
-
-
 }
